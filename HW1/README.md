@@ -1,11 +1,11 @@
 目錄 :
 -----
 
-* [1.用完42bchen.com後有什麼感想？](#用完42bchen.com後有什麼感想？)
-* [2.跟Web2.0上的所有應用跟Dapp有什麼差？](#跟Web2.0上的所有應用跟Dapp有什麼差？)
-* [3.哪些Dapp是符合上兩堂課中的性質？](#哪些Dapp是符合上兩堂課中的性質？)
-* [4.找一個你喜歡的Dapp，說明為什麼你最喜歡這個Dapp?](#找一個你喜歡的Dapp，說明為什麼你最喜歡這個Dapp?)
-* [5.他們用這些特性是有意義的嗎？還是為了區塊鏈而區塊鏈？](#他們用這些特性是有意義的嗎？還是為了區塊鏈而區塊鏈？)
+* [用完42bchen.com後有什麼感想？](#用完42bchen.com後有什麼感想？)
+* [跟Web2.0上的所有應用跟Dapp有什麼差？](#跟Web2.0上的所有應用跟Dapp有什麼差？)
+* [哪些Dapp是符合上兩堂課中的性質？](#哪些Dapp是符合上兩堂課中的性質？)
+* [找一個你喜歡的Dapp，說明為什麼你最喜歡這個Dapp?](#找一個你喜歡的Dapp，說明為什麼你最喜歡這個Dapp?)
+* [他們用這些特性是有意義的嗎？還是為了區塊鏈而區塊鏈？](#他們用這些特性是有意義的嗎？還是為了區塊鏈而區塊鏈？)
 
 
 用完42bchen.com後有什麼感想？
@@ -26,8 +26,7 @@ Web2.0屬於中心化的服務，指的是一個利用Web的平台，由使用�
 在我們生活中比較常見的幾個Web2.0實例像是Facebook、微博、維基百科，這些產品的特點是，所有個人數據基本上都存儲在巨大存儲的服務器中，
 且歸私人公司所有，而我們的線上身份也不屬於自己，這特點也可以說是一種缺點，因為使用者的隱私會受到威脅。
 
-DAPP全名為去中心化應用程式（Decentralized Application），是一種建構在區塊鏈上的應用程式，不同於傳統的APP，DApp的程式分布在分散式網路中，
-因此不需依靠任何中心化的伺服器運作，達到數據公開透明，難以竄改的特性。
+DAPP全名為去中心化應用程式（Decentralized Application），是一種建構在區塊鏈上的應用程式，不同於傳統的APP，公司僅負責提供一個平台給使用者使用，而且因為DApp的程式分布在分散式網路中，因此不需依靠任何中心化的伺服器來運作，達到數據公開透明，難以竄改的特性。
 
 章魚貓(DAPP)與Web2.0的差別就在於章魚貓(DAPP)是一個去中心化的應用程式，你在章魚貓(DAPP)上進行的每一筆交易都會被記錄下來，
 而且因為是去中心化的應用程式，沒有任何中心伺服器，因此沒有數據洩漏的風險，除此之外，由於資料儲存在分散式帳本中，交易資料也很難被竄改。
@@ -35,6 +34,19 @@ DAPP全名為去中心化應用程式（Decentralized Application），是一種
 哪些Dapp是符合上兩堂課中的性質？
 ------
 [dappradar](https://dappradar.com/?fbclid=IwAR1ZYaMP0w8bMQcB9_KDXgsceU1W7hasx4ki5m2OaqafNwPgafUAc4Rue6k)
+
+1. [dinosaur-kingdom](https://dappradar.com/eos/1091/dinosaur-kingdom) dinosaur-kingdom是一款透過孵化恐龍或是賣出恐龍蛋來賺取獎勵的遊戲，而因為dinosaur-kingdom是區塊鏈遊戲，因此所有買賣紀錄，例如:恐龍蛋交易、分紅、推薦獎勵...等 都能在區塊瀏覽器中查詢到，此特性就符合所謂的`公開透明`性質。
+
+![dinosaur-kingdom](https://dappimg.com/media/image/app/b0560684eef240a8a5f7bc23f81c45d2.png)
+
+2. [IPSE](https://dappradar.com/eos/1129/ipse) IPSE（InterPlanetary Search Engine）不同於傳統的搜尋引擎，數據儲存在分散式網絡中的各節點，由於資料是點對點的處理，因此不需藉由第三方當作媒介，如此一來就能避免資訊被特定公司壟斷，造成數據不公開等問題。這種`去中心化`、`數據公開`的特性就符合區塊鏈的性質。
+
+![IPSE](https://img.jinse.com/2126857_image3.png)
+
+3. [dice2.win](https://dappradar.com/app/449/dice2-win) dice2.win 是一款賭博遊戲，由玩家和莊家在平台上生成一組隨機數相互對賭，但玩家與莊家皆無法干涉遊戲結果，並且過程中沒有第三方參與遊戲。此外每個玩家都可以自由檢視遊戲規則與遊戲原始碼，所以玩家可以安心下注。總體來說dice2.win符合`去中心化`、`公開透明`的性質。
+
+![dice2.win](https://dappimg.com/media/image/app/c3c89b5a-aa98-4998-9dc6-c4e9d1f5731f.jpg) 
+
 
 找一個你喜歡的Dapp，說明為什麼你最喜歡這個Dapp?
 ------
