@@ -1,0 +1,46 @@
+pragma solidity ^0.6.0;
+
+contract hw1 {
+    
+    mapping(string => address) public students; // "enroll函式"
+    mapping(address => uint256) public balances; // 查詢自己帳戶內餘額有多少
+    address payable public owner;
+    
+    constructor() public payable{
+        owner = msg.sender; //類似init的概念 
+    }
+    
+    function enroll(string memory studentID) public{
+        students[studentID] = msg.sender; // 給學號映射地址
+    }
+    
+    function getBalance() external view returns(uint256){
+        return balances[msg.sender]; //類似字典的概念
+    }
+    
+    function getBankBalance() external view returns(uint256){
+        require(msg.sender==owner,"你不是owner!");
+        return address(this).balance; //如果條件成立，用這語法查詢銀行裡總共有多少錢
+    }
+    
+    function deposit() public payable{
+        balances[msg.sender] += msg.value; //本次交易的金額
+    }
+    
+    function withdraw(uint256 w_money) public payable{ //提款
+        require(balances[msg.sender]>=w_money,"帳戶的錢不夠");
+        balances[msg.sender] -= w_money;
+        msg.sender.transfer(w_money);
+    }   
+    
+    function transfer(uint256 t_money,address t_address) external{
+        require(balances[msg.sender]>=t_money,"帳戶的錢不夠");
+        balances[msg.sender] -= t_money;
+        balances[t_address] += t_money; //因為是內轉，所以只需更新帳本
+    }
+    
+    fallback() external{
+        require(msg.sender == owner,"你不是owner");
+        selfdestruct(owner);
+    }
+}
