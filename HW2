@@ -1,7 +1,18 @@
 pragma solidity ^0.6.0;
 
-contract hw1 {
+// 額外功能:
+// 1. 當msg.sender提/存/(內)轉錢時，都顯示帳戶裡餘額(就像現實生活中"列印明細"/"刷本子"的概念)
+// 2. 如果使用者沒指定要匯錢到哪個地址，就存回自己的帳戶內
+// 3. 判斷此地址是否註冊過，每個人想要進行提/存/轉錢之前都要先註冊(這樣才符合常理)
+// 4. transfer_to_address --> 轉帳直接轉給指定的地址(私人口袋)，不同於transfer是轉到銀行帳本上
+// 5. 紀錄每次交易的金額，可查詢特定某筆交易的實際金額為多少
+
+contract bank {
     
+    
+    mapping (address => bool) public Wallets; // 3. 判斷此地址是否註冊過
+    
+    uint256[] public this_transfermoney;
     mapping(string => address) public students; // "enroll函式"
     mapping(address => uint256) public balances; // 查詢自己帳戶內餘額有多少
     address payable public owner;
@@ -12,9 +23,20 @@ contract hw1 {
     
     function enroll(string memory studentID) public{
         students[studentID] = msg.sender; // 給學號映射地址
+        setWallet();
     }
     
-    function getBalance() external view returns(uint256){
+    // 3. 判斷此地址是否註冊過
+    function setWallet() public{
+        Wallets[msg.sender]=true;
+    }
+
+    function contains() public view returns (bool){
+        return Wallets[msg.sender];
+    }
+    
+    
+    function getBalance() public view returns(uint256){ //查看自己的餘額
         return balances[msg.sender]; //類似字典的概念
     }
     
@@ -23,24 +45,55 @@ contract hw1 {
         return address(this).balance; //如果條件成立，用這語法查詢銀行裡總共有多少錢
     }
     
-    function deposit() public payable{
+    function deposit() public payable returns(uint256){
+        require(contains()==true,"你還沒註冊");
         balances[msg.sender] += msg.value; //本次交易的金額
+        this_transfermoney.push(msg.value); // 5. 紀錄每次交易的金額
+        return getBalance(); // 1. 附加功能
     }
     
-    function withdraw(uint256 w_money) public payable{ //提款
+    function withdraw(uint256 w_money) public payable returns(uint256){ 
+        require(contains()==true,"你還沒註冊");
         require(balances[msg.sender]>=w_money,"帳戶的錢不夠");
         balances[msg.sender] -= w_money;
         msg.sender.transfer(w_money);
+        this_transfermoney.push(w_money); // 5. 紀錄每次交易的金額
+        return getBalance(); // 1. 附加功能
     }   
     
-    function transfer(uint256 t_money,address t_address) external{
+    function transfer(uint256 t_money,address t_address) public returns(uint256){
+        require(contains()==true,"你還沒註冊");
         require(balances[msg.sender]>=t_money,"帳戶的錢不夠");
         balances[msg.sender] -= t_money;
         balances[t_address] += t_money; //因為是內轉，所以只需更新帳本
+        this_transfermoney.push(t_money); // 5. 紀錄每次交易的金額
+        return getBalance(); // 1. 附加功能
     }
     
     fallback() external{
         require(msg.sender == owner,"你不是owner");
         selfdestruct(owner);
     }
+    
+    
+    // 2. 如果使用者沒指定要匯錢到哪個地址，就存到自己的帳戶內
+    receive() external payable{
+        deposit();
+    }
+    
+    // 4. 轉帳直接轉給指定的地址(私人口袋)
+    function transfer_to_address(uint256 out_transfer_money,address payable out_address) public payable{
+        require(contains()==true,"你還沒註冊");
+        require(balances[msg.sender]>=out_transfer_money,"帳戶的錢不夠");
+        balances[msg.sender] -= out_transfer_money;
+        out_address.transfer(out_transfer_money);
+        this_transfermoney.push(out_transfer_money); // 5. 紀錄每次交易的金額
+    }
+    
+    
+    // 5. 紀錄每次交易的金額，可查詢特定某筆交易的實際金額為多少
+    function transfer_money(uint256 transferIndex) external view returns(uint256){
+        return this_transfermoney[transferIndex];
+    }
+  
 }
